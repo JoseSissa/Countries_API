@@ -1,0 +1,10 @@
+.header_title {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dark_mode_button {
+    display: block;
+}
