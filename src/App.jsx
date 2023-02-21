@@ -1,17 +1,17 @@
 import { useState } from 'react'
+import { Route, useLocation } from "wouter";
 import './App.css'
 
-import Header from './Header/Header.jsx'
-import SelectRegion from './SelectRegion/selectRegion.jsx'
-import Card from './Card/card.jsx'
+import Header from './components/Header/Header.jsx'
+import Home from './Pages/Home.jsx'
 
 function App() {
 
   return (
     <div className="App">
       <Header />
-      <SelectRegion />
-      <Card />
+
+      <Route path="/" component={Home} />
       
     </div>
   )
