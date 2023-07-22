@@ -1,21 +1,20 @@
 import React from 'react';
+import './card.css'
 
-function Card( capital, name, population, region ) {
-    console.log('Hello world');
-    console.log(capital, name, population, region);
+export function Card({ country }) {
+    const { name, capital, population, region, flags } = country
+
     return ( 
-        <section>
-            <div>
-                <img src="" alt="" />
-            </div>
-            <div>
-                <h3>{ name }</h3>
-                <p>{ population }</p>
-                <p>{ region }</p>
-                <p>{ capital }</p>
+        <section className='card'>
+            <header>
+                <img className='card_flag' src={`${flags.png}`} alt={flags.alt} />
+            </header>
+            <div className='card_content'>
+                <h3>{name.official}</h3>
+                <p>Population: {population}</p>
+                <p>Region: {region}</p>
+                <p>Capital: {capital}</p>
             </div>
         </section>
     );
 }
-
-export default Card;

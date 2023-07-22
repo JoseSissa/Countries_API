@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 
-import { Header } from './Header/Header.jsx'
-import { SelectContinent } from './SelectContinent/SelectContinent.jsx'
-import { Card } from './Card/Card.jsx'
-import { SearchCountry } from './SearchCountry/SearchCountry'
+import { Header } from './components/Header/Header.jsx'
+import { SearchCountry } from './components/SearchCountry/SearchCountry'
+import { SelectContinent } from './components/SelectContinent/SelectContinent.jsx'
+import { Card } from './components/Card/Card.jsx'
 
 const COUNTRIES_ENDPOINT_ALL = 'https://restcountries.com/v3.1/all'
 
