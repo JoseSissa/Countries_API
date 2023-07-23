@@ -26,8 +26,16 @@ function App() {
   return (
     <main className="App">
       <Header />
-      <SearchCountry setAllCountry={setAllCountry} />
-      <SelectContinent allCountry={allCountry} setRenderCountries={setRenderCountries} />
+      <SearchCountry 
+        allCountry={allCountry}
+        renderCountries={renderCountries}
+        setRenderCountries={setRenderCountries}
+      />
+      <SelectContinent 
+        allCountry={allCountry}
+        renderCountries={renderCountries}
+        setRenderCountries={setRenderCountries}
+      />
       <article className='countries_content'>
         {
           renderCountries.map((elem, i) => {

@@ -1,7 +1,16 @@
-export function SearchCountry ({ setAllCountry }) {
+export function SearchCountry ({ allCountry, renderCountries, setRenderCountries }) {
 
     const searchCountry = (e) => {
-        setAllCountry(e.target.value)
+        const country = e.target.value.toLowerCase()
+        let filter = []
+        
+        filter = allCountry.filter(elem => {
+            const nameOfCountry = elem.name.official.toLowerCase()
+            return (
+                nameOfCountry.includes(country)
+            )
+        })
+        setRenderCountries(filter)
     }
 
     return (

@@ -4,36 +4,38 @@ export function SelectContinent({ allCountry, setRenderCountries }) {
 
     const handleRegion = (e) => {
         let filter = []
-        if(e.target.value === 'all') {
+        const continent = e.target.value
+
+        if(continent === 'all') {
             filter = allCountry
-        } else if(e.target.value === 'africa') {
+        } else if(continent === 'Africa') {
             filter = allCountry.filter(elem => {
                 return (
-                    elem.region === 'Africa'
+                    elem.region === continent
                 )
             })
-        } else if(e.target.value === 'america') {
+        } else if(continent === 'Americas') {
             filter = allCountry.filter(elem => {
                 return (
-                    elem.region === 'Americas'
+                    elem.region === continent
                 )
             })
-        } else if(e.target.value === 'asia') {
+        } else if(continent === 'Asia') {
             filter = allCountry.filter(elem => {
                 return (
-                    elem.region === 'Asia'
+                    elem.region === continent
                 )
             })
-        } else if(e.target.value === 'europe') {
+        } else if(continent === 'Europe') {
             filter = allCountry.filter(elem => {
                 return (
-                    elem.region === 'Europe'
+                    elem.region === continent
                 )
             })
-        } else if (e.target.value === 'oceania') {
+        } else if (continent === 'Oceania') {
             filter = allCountry.filter(elem => {
                 return (
-                    elem.region === 'Oceania'
+                    elem.region === continent
                 )
             })
         }
@@ -43,11 +45,11 @@ export function SelectContinent({ allCountry, setRenderCountries }) {
     return ( 
         <select onChange={handleRegion} placeholder="Filter by region" >
             <option value="all">All</option>
-            <option value="africa">Africa</option>
-            <option value="america">America</option>
-            <option value="asia">Asia</option>
-            <option value="europe">Europe</option>
-            <option value="oceania">Oceania</option>
+            <option value="Africa">Africa</option>
+            <option value="Americas">America</option>
+            <option value="Asia">Asia</option>
+            <option value="Europe">Europe</option>
+            <option value="Oceania">Oceania</option>
         </select>
     );
 }
