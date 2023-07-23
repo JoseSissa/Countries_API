@@ -1,6 +1,21 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
+import { API_URL, REGION_API_URL } from '../../services/settings';
 
-export function SelectContinent({ setRegion }) {
+export function SelectContinent({ setAllCountry }) {
+
+    const [region, setRegion] = useState('all');
+
+    useEffect(() => {
+        if(region === 'all') {
+            fetch(API_URL)
+              .then(res => res.json())
+              .then(res => setAllCountry(res))
+        } else {
+            fetch(`${REGION_API_URL}/${region}`)
+              .then(res => res.json())
+              .then(res => setAllCountry(res))
+        }
+      }, [region]);
 
     const handleRegion = (e) => {
         setRegion(e.target.value)

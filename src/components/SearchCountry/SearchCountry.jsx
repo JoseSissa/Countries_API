@@ -1,7 +1,7 @@
-export function SearchCountry ({ setCountry }) {
+export function SearchCountry ({ setAllCountry }) {
 
     const searchCountry = (e) => {
-        setCountry(e.target.value)
+        setAllCountry(e.target.value)
     }
 
     return (
