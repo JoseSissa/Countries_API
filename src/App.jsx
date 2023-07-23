@@ -6,21 +6,31 @@ import { SearchCountry } from './components/SearchCountry/SearchCountry'
 import { SelectContinent } from './components/SelectContinent/SelectContinent.jsx'
 import { Card } from './components/Card/Card.jsx'
 
+import { API_URL } from './services/settings'
+
 function App() {
 
   const [allCountry, setAllCountry] = useState([]);
-  // const [renderCountries, setRenderCountries] = useState([]);
+  const [renderCountries, setRenderCountries] = useState([]);
 
-  console.log(allCountry);
+  useEffect(() => {
+    console.log('RENDER');
+      fetch(API_URL)
+        .then(res => res.json())
+        .then(res => {
+          setRenderCountries(res)
+          setAllCountry(res)
+        })
+  }, [])
 
   return (
     <main className="App">
       <Header />
       <SearchCountry setAllCountry={setAllCountry} />
-      <SelectContinent setAllCountry={setAllCountry} />
+      <SelectContinent allCountry={allCountry} setRenderCountries={setRenderCountries} />
       <article className='countries_content'>
         {
-          allCountry.map((elem, i) => {
+          renderCountries.map((elem, i) => {
             return (
               <Card country={elem} key={`${elem.capital}${i}`}/>
             )

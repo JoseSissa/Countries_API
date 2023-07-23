@@ -1,24 +1,43 @@
-import { useState, useEffect } from 'react';
-import { API_URL, REGION_API_URL } from '../../services/settings';
+import React from 'react';
 
-export function SelectContinent({ setAllCountry }) {
-
-    const [region, setRegion] = useState('all');
-
-    useEffect(() => {
-        if(region === 'all') {
-            fetch(API_URL)
-              .then(res => res.json())
-              .then(res => setAllCountry(res))
-        } else {
-            fetch(`${REGION_API_URL}/${region}`)
-              .then(res => res.json())
-              .then(res => setAllCountry(res))
-        }
-      }, [region]);
+export function SelectContinent({ allCountry, setRenderCountries }) {
 
     const handleRegion = (e) => {
-        setRegion(e.target.value)
+        let filter = []
+        if(e.target.value === 'all') {
+            filter = allCountry
+        } else if(e.target.value === 'africa') {
+            filter = allCountry.filter(elem => {
+                return (
+                    elem.region === 'Africa'
+                )
+            })
+        } else if(e.target.value === 'america') {
+            filter = allCountry.filter(elem => {
+                return (
+                    elem.region === 'Americas'
+                )
+            })
+        } else if(e.target.value === 'asia') {
+            filter = allCountry.filter(elem => {
+                return (
+                    elem.region === 'Asia'
+                )
+            })
+        } else if(e.target.value === 'europe') {
+            filter = allCountry.filter(elem => {
+                return (
+                    elem.region === 'Europe'
+                )
+            })
+        } else if (e.target.value === 'oceania') {
+            filter = allCountry.filter(elem => {
+                return (
+                    elem.region === 'Oceania'
+                )
+            })
+        }
+        setRenderCountries(filter)
     }
 
     return ( 
