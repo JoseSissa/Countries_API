@@ -5,7 +5,7 @@ export function Card({ country }) {
     const { name, capital, population, region, flags } = country
 
     return ( 
-        <section className='card'>
+        <article className='card'>
             <header>
                 <img className='card_flag' src={`${flags.png}`} alt={flags.alt} />
             </header>
@@ -15,6 +15,6 @@ export function Card({ country }) {
                 <p>Region: {region}</p>
                 <p>Capital: {capital}</p>
             </div>
-        </section>
+        </article>
     );
 }

@@ -1,7 +1,91 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './header.css'
 
-export function Header() {
+export function Header({ allCountry, setRenderCountries }) {
+
+    const [searchCountryText, setSearchCountryText] = useState('');
+    const [searchContinent, setSearchContinent] = useState('all');
+
+    const filterForContinent = ({ continent, listOfCountries }) => {
+        let result = []
+        if(continent === 'all') {
+            result = listOfCountries
+        } else if(continent === 'Africa') {
+            result = listOfCountries.filter(elem => {
+                return (
+                    elem.region === continent
+                )
+            })
+        } else if(continent === 'Americas') {
+            result = listOfCountries.filter(elem => {
+                return (
+                    elem.region === continent
+                )
+            })
+        } else if(continent === 'Asia') {
+            result = listOfCountries.filter(elem => {
+                return (
+                    elem.region === continent
+                )
+            })
+        } else if(continent === 'Europe') {
+            result = listOfCountries.filter(elem => {
+                return (
+                    elem.region === continent
+                )
+            })
+        } else if (continent === 'Oceania') {
+            result = listOfCountries.filter(elem => {
+                return (
+                    elem.region === continent
+                )
+            })
+        }
+        return result
+    }
+    const filterForNameCountry = ({ country, listOfCountries }) => {
+        let result = []
+        if (country.toLowerCase() === '') {
+            return listOfCountries
+        }else {
+            result = listOfCountries.filter(elem => {
+                const nameOfCountry = elem.name.official.toLowerCase()
+                return (
+                    nameOfCountry.includes(country)
+                )
+            })
+        }
+        return result
+    }
+
+    const searchCountry = (e) => {
+        const country = e.target.value.toLowerCase();
+        setSearchCountryText(e.target.value.toLowerCase())
+
+        let filter = []
+        
+        if(searchContinent == 'all') {
+            filter = filterForNameCountry({ country: e.target.value, listOfCountries: allCountry })
+        }else {
+            let filterByContinent = filterForContinent({ continent: searchContinent, listOfCountries: allCountry })
+            filter = filterForNameCountry({ country: e.target.value, listOfCountries: filterByContinent })
+        }
+        setRenderCountries(filter)
+    }
+
+    const handleContinent = (e) => {
+        let filter = []
+        setSearchContinent(e.target.value)
+        const continent = e.target.value
+
+        if(searchCountryText == '') {
+            filter = filterForContinent({ continent, listOfCountries: allCountry })
+        } else {
+            const filterByText = filterForNameCountry({ country: searchCountryText, listOfCountries: allCountry })
+            filter = filterForContinent({ continent, listOfCountries: filterByText })
+        }
+        setRenderCountries(filter)
+    }
 
     const darkMode = () => {
         console.log('Dark mode');
@@ -13,6 +97,19 @@ export function Header() {
                 <h3>Where in the world?</h3>
                 <button className='dark_mode_button' onClick={darkMode}>Dark mode</button>
             </div>
+
+            <div>
+                <input onChange={searchCountry} placeholder='Search for a country' type="text" />
+            </div>
+
+            <select onChange={handleContinent} placeholder="Filter by region" >
+                <option value="all">All</option>
+                <option value="Africa">Africa</option>
+                <option value="Americas">America</option>
+                <option value="Asia">Asia</option>
+                <option value="Europe">Europe</option>
+                <option value="Oceania">Oceania</option>
+            </select>
             
         </header>
     );

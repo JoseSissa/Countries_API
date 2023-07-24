@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react'
 import './App.css'
 
 import { Header } from './components/Header/Header.jsx'
-import { SearchCountry } from './components/SearchCountry/SearchCountry'
-import { SelectContinent } from './components/SelectContinent/SelectContinent.jsx'
 import { Card } from './components/Card/Card.jsx'
 
 import { API_URL } from './services/settings'
@@ -25,18 +23,12 @@ function App() {
 
   return (
     <main className="App">
-      <Header />
-      <SearchCountry 
+      <Header 
         allCountry={allCountry}
         renderCountries={renderCountries}
         setRenderCountries={setRenderCountries}
       />
-      <SelectContinent 
-        allCountry={allCountry}
-        renderCountries={renderCountries}
-        setRenderCountries={setRenderCountries}
-      />
-      <article className='countries_content'>
+      <section className='countries_content'>
         {
           renderCountries.map((elem, i) => {
             return (
@@ -44,7 +36,7 @@ function App() {
             )
           })
         }
-      </article>
+      </section>
     </main>
   )
 }
