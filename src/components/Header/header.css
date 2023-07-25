@@ -1,10 +1,86 @@
 .header_title {
     width: 100%;
+    background-color: var(--Dark-Blue);
+    box-shadow: 0 0 8px 0px var(--Very-Dark-Blue-Text);
+}
+.header_title > div {
+    width: 100%;
+    max-width: var(--max-width);
     display: flex;
+    padding: 28px 20px;
+    margin: 0 auto 28px;
     justify-content: space-between;
     align-items: center;
 }
 
 .dark_mode_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: var(--Dark-Blue);
+    color: var(--White);
+    font-weight: 500;
+}
+.dark_mode_button img {
+    width: 16px;
+    margin-right: 8px;
+}
+.filters input, .filters select {
     display: block;
+    margin-bottom: 28px;
+    border-radius: 8px;
+    background-color: var(--Dark-Blue);
+    border: none;
+    outline: none;
+    color: var(--White);
+    box-shadow: 0 0 8px 0px var(--Very-Dark-Blue-Text);
+}
+.filters input::placeholder {
+    color: var(--White);
+}
+.filters {
+    width: 100%;
+    padding: 0 8px;
+    max-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.filters .searchCountry {
+    position: relative;
+}
+.filters .searchIcon {
+    width: 20px;
+    position: absolute;
+    top: 15px;
+    left: 12px;
+}
+.filters label {
+    width: 100%;
+}
+.filters input {
+    width: 100%;
+    padding: 16px 12px 16px 40px;
+}
+
+.filters select {
+    width: 100%;
+    max-width: 150px;
+    padding: 16px 12px;
+}
+
+@media (min-width: 740px) {
+    .filters {
+        display: flex;
+        padding: 0 20px;
+        width: 100%;
+        max-width: var(--max-width);
+        justify-content: space-between;
+    }
+    .filters label {
+        max-width: 350px;
+    }
 }

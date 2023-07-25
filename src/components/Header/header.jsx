@@ -65,14 +65,13 @@ export function Header({ allCountry, setRenderCountries }) {
         let filter = []
         
         if(searchContinent == 'all') {
-            filter = filterForNameCountry({ country: e.target.value, listOfCountries: allCountry })
+            filter = filterForNameCountry({ country, listOfCountries: allCountry })
         }else {
             let filterByContinent = filterForContinent({ continent: searchContinent, listOfCountries: allCountry })
-            filter = filterForNameCountry({ country: e.target.value, listOfCountries: filterByContinent })
+            filter = filterForNameCountry({ country, listOfCountries: filterByContinent })
         }
         setRenderCountries(filter)
     }
-
     const handleContinent = (e) => {
         let filter = []
         setSearchContinent(e.target.value)
@@ -94,22 +93,31 @@ export function Header({ allCountry, setRenderCountries }) {
     return ( 
         <header>
             <div className='header_title'>
-                <h3>Where in the world?</h3>
-                <button className='dark_mode_button' onClick={darkMode}>Dark mode</button>
+                <div>
+                    <h3>Where in the world?</h3>
+                    <button className='dark_mode_button' onClick={darkMode}>
+                        <img src="../../../public/icons/dark-mode-white.svg" alt="Icon dark mode" />
+                        Dark mode
+                    </button>
+                </div>
             </div>
 
-            <div>
-                <input onChange={searchCountry} placeholder='Search for a country' type="text" />
+            <div className='filters'>
+                <label htmlFor="searchCountry" className='searchCountry'>
+                    <img src="../../../public/icons/search-white.svg" className='searchIcon' alt="Search icon" />
+                    <input onChange={searchCountry} id='searchCountry' placeholder='Search for a country' type="text" />
+                </label>
+
+                <select onChange={handleContinent} placeholder="Filter by region" >
+                    <option value="all">All</option>
+                    <option value="Africa">Africa</option>
+                    <option value="Americas">America</option>
+                    <option value="Asia">Asia</option>
+                    <option value="Europe">Europe</option>
+                    <option value="Oceania">Oceania</option>
+                </select>
             </div>
 
-            <select onChange={handleContinent} placeholder="Filter by region" >
-                <option value="all">All</option>
-                <option value="Africa">Africa</option>
-                <option value="Americas">America</option>
-                <option value="Asia">Asia</option>
-                <option value="Europe">Europe</option>
-                <option value="Oceania">Oceania</option>
-            </select>
             
         </header>
     );
