@@ -1,40 +1,41 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
+import debounce from "just-debounce-it";
 import './App.css'
 
 import { Header } from './components/Header/Header.jsx'
 import { Card } from './components/Card/Card.jsx'
-
-import { API_URL } from './services/settings'
+import { useCountries } from './hooks/useCountries.js'
 
 function App() {
 
-  const [allCountry, setAllCountry] = useState([]);
-  const [renderCountries, setRenderCountries] = useState([]);
+  const { countries, getCountries, loading } = useCountries()
+  const [search, updateSearch] = useState('')
 
-  useEffect(() => {
-    console.log('RENDER');
-      fetch(API_URL)
-        .then(res => res.json())
-        .then(res => {
-          setRenderCountries(res)
-          setAllCountry(res)
-        })
-  }, [])
+
+  // Como en cada render se crea un nuevo debounce entonces hay que usar el useCallback
+  const debounceGetCountries = useCallback(
+    debounce(({ search }) => {
+        getCountries({ search })
+    }, 350)
+    , []
+  )
+
+  useEffect(() => {    
+    debounceGetCountries({ search })
+  }, [search]);
 
   return (
     <main className="App">
-      <Header 
-        allCountry={allCountry}
-        renderCountries={renderCountries}
-        setRenderCountries={setRenderCountries}
-      />
+      <Header search={search} updateSearch={updateSearch} />
       <section className='countries_content'>
         {
-          renderCountries.map((elem, i) => {
-            return (
-              <Card country={elem} key={`${elem.capital}${i}`}/>
-            )
-          })
+          loading 
+            ? <p>Cargando ...</p>
+            : countries.map((elem, i) => {
+                return (
+                  <Card country={elem} key={`${elem.capital}${i}`}/>
+                )
+              })
         }
       </section>
     </main>

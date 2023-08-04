@@ -12,7 +12,10 @@
 .countries_content article:first-child {
     margin-top: 0px;
 }
-@media (min-width: 740px) {
+@media (min-width: 656px) {
+    .countries_content {
+        justify-content: space-between;
+    }
     .countries_content article:first-child {
         margin: 40px auto;
     }

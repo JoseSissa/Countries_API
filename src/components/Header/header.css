@@ -54,9 +54,14 @@
 }
 .filters .searchIcon {
     width: 20px;
-    position: absolute;
-    top: 15px;
-    left: 12px;
+}
+.searchCountry-button {
+    width: 49px;
+    height: 49px;
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
 }
 .filters label {
     width: 100%;
