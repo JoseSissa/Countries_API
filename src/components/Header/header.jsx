@@ -37,10 +37,8 @@ export function Header({ search, updateSearch, updateContinent }) {
             <div className='filters'>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="searchCountry" className='searchCountry'>
+                        <img src="../../../public/icons/search-white.svg" className='searchIcon' alt="Search icon" />
                         <input onChange={handleChange} value={search} id='searchCountry' placeholder='Search for a country' type="text" />
-                        <button className='searchCountry-button' type='submit'>
-                            <img src="../../../public/icons/search-white.svg" className='searchIcon' alt="Search icon" />
-                        </button>
                     </label>
 
                     <select onChange={handleContinent} placeholder="Filter by region" >
