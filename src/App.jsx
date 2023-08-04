@@ -10,23 +10,24 @@ function App() {
 
   const { countries, getCountries, loading } = useCountries()
   const [search, updateSearch] = useState('')
+  const [continent, updateContinent] = useState('')
 
 
   // Como en cada render se crea un nuevo debounce entonces hay que usar el useCallback
   const debounceGetCountries = useCallback(
-    debounce(({ search }) => {
-        getCountries({ search })
+    debounce(({ search, continent }) => {
+        getCountries({ search, continent })
     }, 350)
     , []
   )
 
   useEffect(() => {    
-    debounceGetCountries({ search })
-  }, [search]);
+    debounceGetCountries({ search, continent })
+  }, [search, continent]);
 
   return (
     <main className="App">
-      <Header search={search} updateSearch={updateSearch} />
+      <Header search={search} updateSearch={updateSearch} updateContinent={updateContinent} />
       <section className='countries_content'>
         {
           loading 

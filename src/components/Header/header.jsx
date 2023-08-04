@@ -1,31 +1,16 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import './header.css'
-import { useCountries } from '../../hooks/useCountries';
 
 
 
-export function Header({ search, updateSearch }) {
-
-    
-    const { countries, getCountries, loading } = useCountries()
+export function Header({ search, updateSearch, updateContinent }) {
 
     const darkMode = () => {
         console.log('Dark mode');
     }
 
-    // Como en cada render se crea un nuevo debounce entonces hay que usar el useCallback
-    // const debounceGetCountries = useCallback(
-    //     debounce(({ search }) => {
-    //         getCountries({ search })
-    //         // setRenderCountries(listCountries)
-    //     }, 500)
-    //     , []
-    // )
-
     const handleChange = (e) => {
-        const newSearch = e.target.value
-        updateSearch(newSearch)
-        // debounceGetCountries({ search: newSearch })
+        updateSearch(e.target.value)
     }
 
     const handleSubmit = (e) => {
@@ -34,7 +19,7 @@ export function Header({ search, updateSearch }) {
     }
 
     const handleContinent = (e) => {
-        console.log('Select', e.target.value);
+        updateContinent(e.target.value)
     }
 
     return ( 
@@ -59,7 +44,7 @@ export function Header({ search, updateSearch }) {
                     </label>
 
                     <select onChange={handleContinent} placeholder="Filter by region" >
-                        <option value="all">All</option>
+                        <option value="">All</option>
                         <option value="Africa">Africa</option>
                         <option value="Americas">America</option>
                         <option value="Asia">Asia</option>

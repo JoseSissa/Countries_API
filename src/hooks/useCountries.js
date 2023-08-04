@@ -8,14 +8,14 @@ export function useCountries() {
     const [loading, setLoading] = useState(false);
     const [, setError] = useState(null);
 
-    const getCountries = async ({ search = '' }) => {
-        console.log(search);
+    const getCountries = async ({ search = '', continent = '' }) => {
         try {
             setLoading(true)
-            const listCountries = await searchCountries({ country: search })
+            const listCountries = await searchCountries({ country: search, continent })
             setCountries(listCountries)
         } catch (error) {
-            setError(e.message)
+            console.log(error);
+            setError(error.message)
         } finally {
             setLoading(false)
         }

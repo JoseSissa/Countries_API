@@ -1,16 +1,26 @@
-import { API_URL } from "./settings";
+import { API_URL, API_URL_CONTINENT } from "./settings";
 
-export function searchCountries ({ country }) {
-    console.log({ country });
-    const API_URL_FIXED = country === '' 
-                            ? `${API_URL}/all` 
-                            : `${API_URL}/name/${country}`
+export function searchCountries ({ country = '', continent = '' }) {
+    
+    let API_URL_FIXED = `${API_URL}/all`
+    if(country === '' && continent === '') {
+        API_URL_FIXED = `${API_URL}/all` 
+    }else if(country !== '' && continent === '') {
+        API_URL_FIXED = `${API_URL}/name/${country}`
+    }else if (country === '' && continent !== '') {
+        API_URL_FIXED = `${API_URL_CONTINENT}/${continent}`
+    }else if (country !== '' && continent !== '') {
+        API_URL_FIXED = `${API_URL_CONTINENT}/${continent}`
+    }
     return (
         fetch(API_URL_FIXED)
             .then(res => res.json())
             .then(res => {
-                console.log(res);
-                const data = res.map(elem => {
+                let data = res
+                if (country !== '' && continent !== '') {
+                    data = res.filter(elem => elem.name.common.toLowerCase().includes(country))
+                }
+                data = data.map(elem => {
                     const name = elem.name.common
                     const flags = elem.flags
                     const population = elem.population
