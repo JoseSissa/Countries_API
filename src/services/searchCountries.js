@@ -26,7 +26,7 @@ export function searchCountries ({ country = '', continent = '' }) {
                     const population = elem.population
                     const region = elem.region
                     const capital = elem.capital ? elem.capital[0] : "Without Capital"
-                    return { capital, flags, name, population, region }
+                    return { capital, flags, name, population, region, elem }
                 })
                 return data
             })
