@@ -9,7 +9,7 @@ export function searchSingleCountry({ country }) {
                     flag: res[0].flags.svg,
                     name: res[0].name.common,
                     nativeName: res[0].name.official,
-                    population: res[0].population,
+                    population: res[0].population.toLocaleString(),
                     region: res[0].region,
                     subRegion: res[0].subregion,
                     capital: res[0].capital[0],

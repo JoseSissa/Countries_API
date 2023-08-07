@@ -1,0 +1,30 @@
+.detail {
+    max-width: 320px;
+    margin: 0 auto;
+}
+.detail .detail_back {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 8px 12px;
+    margin-bottom: 56px;
+    width: 100px;
+    background-color: var(--Dark-Blue);
+    border: none;
+    box-shadow: 0 0 8px 0px var(--Very-Dark-Blue-Text);
+    color: var(--White);
+    border-radius: 4px;
+    font-size: 16px;
+}
+.detail .detail_flag {
+    width: 100%;
+    max-width: 320px;
+    height: 213px;
+    margin-bottom: 56px;
+}
+.detail .detail_field {
+    font-weight: bold;
+}
+.detail p {
+    margin-bottom: 20px;
+}
